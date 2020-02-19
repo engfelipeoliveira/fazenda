@@ -1,7 +1,6 @@
 package br.com.fazenda.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,7 +36,7 @@ public class TipoAnimal implements Serializable {
 	private String descricao;
 	
 	@Column(name = "VL_PESO_VENDA", nullable = false)
-	private BigDecimal pesoVenda;
+	private Double pesoVenda;
 	
 	@Column(name = "VL_MERCADO", nullable = false)
 	private String valorMercado;
