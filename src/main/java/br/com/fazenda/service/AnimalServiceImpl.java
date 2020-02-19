@@ -1,8 +1,9 @@
 package br.com.fazenda.service;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -27,12 +28,21 @@ public class AnimalServiceImpl implements AnimalService {
 	}
 	
 	private Double calcularPesoMedioPorTipoAnimal(Long idTipoAnimal) {
-		Stream<Animal> listaAnimalPorTipo = animalRepository.findAll().stream().filter(animal -> animal.getTipoAnimal().getId() == idTipoAnimal);
-		Double somaPeso = listaAnimalPorTipo.mapToDouble(Animal::getPeso).sum();
-		Long qtd = listaAnimalPorTipo.count();
-		Double mediaPeso = somaPeso/qtd; 
+		List<Animal> listaAnimalPorTipo = animalRepository.findAll().stream().filter(animal -> animal.getTipoAnimal().getId() == idTipoAnimal).collect(Collectors.toList());
+		Double peso = 0D;
 		
-		return mediaPeso;
+		if(!listaAnimalPorTipo.isEmpty()) {
+			int qtd = listaAnimalPorTipo.size();
+			for(Animal animal : listaAnimalPorTipo) {
+				peso += animal.getPeso();
+			}
+			
+			DecimalFormat df = new DecimalFormat("#.##");      
+			return Double.valueOf(df.format(peso / qtd));
+		}
+		
+		
+		return 0D;
 	}
 
 	@Override
