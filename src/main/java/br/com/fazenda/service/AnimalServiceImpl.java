@@ -13,11 +13,24 @@ import br.com.fazenda.model.Animal;
 import br.com.fazenda.model.TipoAnimal;
 import br.com.fazenda.repository.AnimalRepository;
 
+/**
+ * camada de servico
+ * @author Admin
+ *
+ */
 @Service
 public class AnimalServiceImpl implements AnimalService {
 	
+	/**
+	 * injecao de dependencia animal repository
+	 *
+	 */
 	private final AnimalRepository animalRepository;
 
+	/**
+	 * metodo construtor
+	 *
+	 */
 	public AnimalServiceImpl(AnimalRepository animalRepository) {
 		this.animalRepository = animalRepository;
 	}

@@ -14,6 +14,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * classe entidade persistente tipo de animal
+ * @author Admin
+ *
+ */
 @AutoProperty
 @Getter
 @Setter

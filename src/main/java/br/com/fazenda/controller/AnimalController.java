@@ -12,12 +12,24 @@ import br.com.fazenda.dto.PesoMedioDto;
 import br.com.fazenda.dto.QuantidadeVendaDto;
 import br.com.fazenda.service.AnimalService;
 
+/**
+ * camada rest
+ * @author Admin
+ *
+ */
 @RestController
 @RequestMapping("/animal")
 public class AnimalController {
 
+	/**
+	 * injecao de dependecia do servico animalService
+	 */
 	private final AnimalService animalService;
 	
+	/**
+	 * metodo construtor
+	 * @param animalService
+	 */
 	public AnimalController(AnimalService animalService) {
 		this.animalService = animalService;
 	}

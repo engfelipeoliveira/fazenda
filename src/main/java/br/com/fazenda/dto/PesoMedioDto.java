@@ -10,6 +10,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * classe pojo de transferencia de dados contendo o peso medio por tipo de animal
+ * @author Admin
+ *
+ */
 @AutoProperty
 @Getter
 @Setter
