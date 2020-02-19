@@ -1,6 +1,5 @@
 package br.com.fazenda.service;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,7 +81,7 @@ public class AnimalServiceImpl implements AnimalService {
 		Integer qtdPorcos = quantidadePorTipoAnimal(2L);
 		Integer qtdGalinhas = quantidadePorTipoAnimal(3L);
 		
-		return format((qtdVacas * vaca) + (qtdPorcos * porco) + (qtdGalinhas * galinha));
+		return (qtdVacas * vaca) + (qtdPorcos * porco) + (qtdGalinhas * galinha);
 		
 	}
 	
@@ -99,7 +98,7 @@ public class AnimalServiceImpl implements AnimalService {
 				valorEstoque += animal.getTipoAnimal().getValorMercado();
 			}
 			
-			return format(valorEstoque);
+			return valorEstoque;
 		}
 		
 		return 0D;
@@ -120,7 +119,7 @@ public class AnimalServiceImpl implements AnimalService {
 				peso += animal.getPeso();
 			}
 			
-			return format(peso / qtd);
+			return peso / qtd;
 		}
 		
 		
@@ -147,14 +146,5 @@ public class AnimalServiceImpl implements AnimalService {
 		return listaAnimalPorTipo.size();
 	}
 	
-	/**
-	 * formatar o valor em duas casas decimais para exibicao
-	 * @param valor
-	 * @return
-	 */
-	private Double format(Double valor) {
-		DecimalFormat df = new DecimalFormat("#.##");      
-		return Double.valueOf(df.format(valor));
-	}
 
 }
