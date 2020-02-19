@@ -68,5 +68,20 @@ public class AnimalController {
 		return animalService.consultarValorEstoque();
 		
 	}
+	
+	/**
+	 * 
+	 * @param vaca
+	 * @param porco
+	 * @param galinha
+	 * Servico rest http GET para consultar o valor total da fazenda segundo valores passados por parametro para cada tipo de animal
+	 * @return
+	 * Exemplo http://localhost:8082/fazenda/animal/consultarValorFazendaPorParametro/vaca/15/porco/10/galinha/5
+	 */
+	@GetMapping(value = "/consultarValorFazendaPorParametro/vaca/{vaca}/porco/{porco}/galinha/{galinha}")
+	public Double consultarValorFazendaPorParametro(@PathVariable("vaca") Double vaca, @PathVariable("porco") Double porco, @PathVariable("galinha") Double galinha) {
+		return animalService.consultarValorFazendaPorParametro(vaca, porco, galinha);
+		
+	}
 
 }

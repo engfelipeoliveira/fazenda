@@ -50,6 +50,16 @@ public class AnimalServiceImpl implements AnimalService {
 				QuantidadeVendaDto.builder().tipoAnimal("Porcos").quantidade(qtdPorcos).build(),
 				QuantidadeVendaDto.builder().tipoAnimal("Galinhas").quantidade(qtdGalinhas).build());
 	}
+	
+	@Override
+	public Double consultarValorFazendaPorParametro(Double vaca, Double porco, Double galinha) {
+		Integer qtdVacas = quantidadePorTipoAnimal(1L);
+		Integer qtdPorcos = quantidadePorTipoAnimal(2L);
+		Integer qtdGalinhas = quantidadePorTipoAnimal(3L);
+		
+		return format((qtdVacas * vaca) + (qtdPorcos * porco) + (qtdGalinhas * galinha));
+		
+	}
 
 	private Double calcularPesoMedioPorTipoAnimal(Long idTipoAnimal) {
 		List<Animal> listaAnimalPorTipo = animalRepository.findAll().stream().filter(animal -> animal.getTipoAnimal().getId() == idTipoAnimal).collect(Collectors.toList());
@@ -61,17 +71,26 @@ public class AnimalServiceImpl implements AnimalService {
 				peso += animal.getPeso();
 			}
 			
-			DecimalFormat df = new DecimalFormat("#.##");      
-			return Double.valueOf(df.format(peso / qtd));
+			return format(peso / qtd);
 		}
 		
 		
 		return 0D;
 	}
 	
+	private Integer quantidadePorTipoAnimal(Long idTipoAnimal) {
+		List<Animal> listaAnimalPorTipo = animalRepository.findAll().stream().filter(animal -> animal.getTipoAnimal().getId() == idTipoAnimal).collect(Collectors.toList());
+		return listaAnimalPorTipo.size();
+	}
+	
 	private Integer quantidadeVendaPorTipoAnimal(Long idTipoAnimal) {
 		List<Animal> listaAnimalPorTipo = animalRepository.findAll().stream().filter(animal -> animal.getTipoAnimal().getId() == idTipoAnimal && animal.getPeso() >= animal.getTipoAnimal().getPesoVenda()).collect(Collectors.toList());
 		return listaAnimalPorTipo.size();
+	}
+	
+	private Double format(Double valor) {
+		DecimalFormat df = new DecimalFormat("#.##");      
+		return Double.valueOf(df.format(valor));
 	}
 
 	@Override
@@ -84,11 +103,12 @@ public class AnimalServiceImpl implements AnimalService {
 				valorEstoque += animal.getTipoAnimal().getValorMercado();
 			}
 			
-			DecimalFormat df = new DecimalFormat("#.##");      
-			return Double.valueOf(valorEstoque);
+			return format(valorEstoque);
 		}
 		
 		return 0D;
 	}
+
+
 
 }

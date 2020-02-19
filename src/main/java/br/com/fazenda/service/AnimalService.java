@@ -14,5 +14,7 @@ public interface AnimalService {
 	List<QuantidadeVendaDto> listarAnimaisVenda();
 	
 	Double consultarValorEstoque();
+	
+	Double consultarValorFazendaPorParametro(Double vaca, Double porco, Double galinha);
 
 }
