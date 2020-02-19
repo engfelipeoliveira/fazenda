@@ -74,4 +74,21 @@ public class AnimalServiceImpl implements AnimalService {
 		return listaAnimalPorTipo.size();
 	}
 
+	@Override
+	public Double consultarValorEstoque() {
+		List<Animal> listaAnimalPorTipo = animalRepository.findAll().stream().filter(animal -> animal.getPeso() >= animal.getTipoAnimal().getPesoVenda()).collect(Collectors.toList());
+		
+		Double valorEstoque = 0D;
+		if(!listaAnimalPorTipo.isEmpty()) {
+			for(Animal animal : listaAnimalPorTipo) {
+				valorEstoque += animal.getTipoAnimal().getValorMercado();
+			}
+			
+			DecimalFormat df = new DecimalFormat("#.##");      
+			return Double.valueOf(valorEstoque);
+		}
+		
+		return 0D;
+	}
+
 }

@@ -12,5 +12,7 @@ public interface AnimalService {
 	List<PesoMedioDto> calcularPesoMedio();
 	
 	List<QuantidadeVendaDto> listarAnimaisVenda();
+	
+	Double consultarValorEstoque();
 
 }

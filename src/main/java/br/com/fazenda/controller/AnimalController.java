@@ -47,13 +47,25 @@ public class AnimalController {
 	}
 	
 	/**
-	 * Servico rest http GET para consultar o peso medio de cada tipo de animal
+	 * Servico rest http GET para consultar a quantidade de animais a venda por tipo considerando o peso de venda
 	 * @return
 	 * Exemplo http://localhost:8082/fazenda/animal/listarAnimaisAVenda
 	 */
 	@GetMapping(value = "/listarAnimaisAVenda")
 	public List<QuantidadeVendaDto> listarAnimaisAVenda() {
 		return animalService.listarAnimaisVenda();
+		
+	}
+	
+	
+	/**
+	 * Servico rest http GET para consultar o valor total do estoque considerando o peso e o preco de venda
+	 * @return
+	 * Exemplo http://localhost:8082/fazenda/animal/consultarValorEstoque
+	 */
+	@GetMapping(value = "/consultarValorEstoque")
+	public Double consultarValorEstoque() {
+		return animalService.consultarValorEstoque();
 		
 	}
 

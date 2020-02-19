@@ -39,6 +39,6 @@ public class TipoAnimal implements Serializable {
 	private Double pesoVenda;
 	
 	@Column(name = "VL_MERCADO", nullable = false)
-	private String valorMercado;
+	private Double valorMercado;
 
 }
